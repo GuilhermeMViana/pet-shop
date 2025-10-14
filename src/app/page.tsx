@@ -1,6 +1,7 @@
 import { PeriodSection } from '@/components/period-section';
 import { groupAppointmentByPeriod } from '@/utils';
 import { APPOINTMENT_DATA } from '@/constants';
+import { AppointmentForm } from '@/components/appointment-form';
 
 export default async function Home() {
   const periods = groupAppointmentByPeriod(APPOINTMENT_DATA);
@@ -21,6 +22,10 @@ export default async function Home() {
         {periods.map((period, index) => (
           <PeriodSection period={period} key={index} />
         ))}
+      </div>
+
+      <div>
+        <AppointmentForm />
       </div>
     </div>
   );
