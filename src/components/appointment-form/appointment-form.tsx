@@ -22,7 +22,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Dog, User } from 'lucide-react';
+import { Dog, Phone, User } from 'lucide-react';
+import { IMaskInput } from 'react-imask';
+
 const appointmentFormSchema = z.object({
   tutorName: z.string().min(3, 'O nome do tutor precisa ser inserido'),
   petName: z.string().min(3, 'O nome do pet precisa ser inserido'),
@@ -110,6 +112,37 @@ export const AppointmentForm = () => {
                       <Input
                         placeholder="Nome do pet"
                         className="pl-10"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-label-medium-size text-content-primary">
+                    Telefone
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Phone
+                        className="absolute left-3 top-1/2 -translate-y-1/2 transform text-content-brand"
+                        size={20}
+                      />
+                      <IMaskInput
+                        mask="(00) 0 0000-0000"
+                        placeholder="(99) 9 9999-9999"
+                        className="pl-10 flex h-12 w-full rounded-md border border-border-primary bg-background-tertiary px-3 py-2 text-sm text-content-primary ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-content-secondary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-border-brand disabled:cursor-not-allowed disabled:opacity-50
+                        hover:border-border-secondary
+                        focus:border-border-brand focus-visible:border-border-brand
+                        aria-invalid:ring-destructive/20 aria-invalid:border-destructive
+                        "
                         {...field}
                       />
                     </div>
